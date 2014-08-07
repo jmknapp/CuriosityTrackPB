@@ -44,6 +44,9 @@
     <icon src="xxxhdpi.png" gap:platform="android" gap:qualifier="xxxhdpi" />
 
     <!-- iPhone / iPod Touch  -->
+    <icon src="icon.png" gap:platform="ios" width="57" height="57" />
+    <icon src="icon@2x.png" gap:platform="ios" width="114" height="114" />
+
     <icon src="icon-60.png" gap:platform="ios" width="60" height="60" />
     <icon src="icon-60@2x.png" gap:platform="ios" width="120" height="120" />
 
@@ -58,4 +61,12 @@
     <!-- Spotlight Icon -->
     <icon src="icon-40.png" gap:platform="ios" width="40" height="40" />
     <icon src="icon-40@2x.png" gap:platform="ios" width="80" height="80" />
+
+    <!-- iPad -->
+    <icon src="icon-72.png" gap:platform="ios" width="72" height="72" />
+    <icon src="icon-72@2x.png" gap:platform="ios" width="144" height="144" />
+
+    <!-- iPad Spotlight and Settings Icon -->
+    <icon src="icon-50.png" gap:platform="ios" width="50" height="50" />
+    <icon src="icon-50@2x.png" gap:platform="ios" width="100" height="100" />
     </widget>
