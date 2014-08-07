@@ -26,7 +26,11 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <gap:plugin name="org.apache.cordova.device.Device" />
+    <gap:plugin name="com.plugin.gcm.PushPlugin" />
+    <gap:plugin name="nl.xservices.plugins.SocialSharing" />
+    <gap:plugin name="org.apache.cordova.inappbrowser.InAppBrowser" />
     <gap:platform name="ios" />
     <gap:platform name="android" />
     <gap:platform name="winphone" />
-</widget>
+    </widget>
