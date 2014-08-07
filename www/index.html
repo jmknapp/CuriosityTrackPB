@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Curiosity Rover track map</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+		<meta http-equiv="imagetoolbar" content="no"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		
+		<style type="text/css">
+			html, body { overflow: hidden; padding: 0; height: 100%; width: 100%; font-family: 'Lucida Grande',Geneva,Arial,Verdana,sans-serif; }
+			body { margin: 0px; background: #fff; }
+			#buttons { position: absolute; bottom:0; z-level: 19999; }
+			#tooltoggle { position: absolute; bottom:0; z-level: 19999; }
+			h1 { margin: 0; padding: 6px; border:0; font-size: 8pt; }
+			h2 { margin: 0; padding: 6px; border:0; font-size: 10pt; }
+			#mapdiv { position: absolute; height: 100%; width: 100%; }
+			.olImageLoadError {  display: none !important; }
+			.olControlAttribution { bottom: 0px !important; left: 2px; right: inherit; width: 400px; }
+			/* conditionally position control differently for Google Maps */
+			.olForeignContainer div.olControlMousePosition { bottom: 28px; }
+			div.olControlScaleLine {
+			    background: gray;
+			    padding: 0px;
+			    bottom: 3px;
+			    left: auto;
+			    right: 3px ;
+			}
+			
+			div.olControlPanPanel {
+			    top: 50px;
+			}
+			
+			div.olControlZoomPanel {
+			    top: 150px;
+			}		
+			
+			.openlayers-map img{ margin:0px }
+			
+			@charset "utf-8";
+			/* CSS Document */
+			#mapdiv { float: left}
+
+			#text {
+    				font-family: Arial;
+    				font-size: smaller;
+			}
+		</style>
+		
+		<script src="http://curiosityrover.com/OpenLayers/OpenLayers-2.13.1/OpenLayers.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css">
+		<link rel="stylesheet" href="css/jquery.toastmessage.css">
+		<link rel="stylesheet" href="css/panel.css">
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="//code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+		<script type='text/javascript' src='js/jquery.toastmessage.js'></script>
+	</head>
+	
+	<body>
+		<div class="app">
+		<script  type="text/javascript">
+			$(document).ready(function(){
+				$("#mapdiv").empty() ;
+				
+				$( window ).on( "orientationchange", function( event ) {
+                                        location.reload(true);
+                                });
+
+
+				$.urlParam = function(name){
+				    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+				    if (results==null){
+				       return null;
+				    }
+				    else{
+				       return results[1] || 0;
+				    }
+				};
+				gettrack() ;
+				getlastdrive() ;
+				$( "#toolsBtn" ).click(function(){toolsBtnAction()}) ;
+				$( "#infoBtn" ).click(function(){infoBtnAction()}) ;
+				$( "#shareBtn" ).click(function(){shareBtnAction()}) ;
+				$( "#logBtn" ).click(function(){logBtnAction()}) ;
+				$( "#imgBtn" ).click(function(){imgBtnAction()}) ;
+			});
+		</script>
+		
+		<div id="mapdiv"></div>
+		<div id="buttons">
+			<button id='infoBtn'></button>
+			<button id='shareBtn'></button>
+			<button id='logBtn'></button>
+			<button id='imgBtn'></button>
+		</div>
+		
+		<div id="tooltoggle">
+			<button id='toolsBtn'></button>
+		</div>
+		</div>
+		<script type='text/javascript' src='js/index.js'></script>
+		<script type='text/javascript' src='js/mslmap.js'></script>
+		<script type='text/javascript' src='cordova.js'></script>
+		<script type="text/javascript" src="js/PushNotification.js"></script>
+ 		<script type="text/javascript">
+            		app.initialize();
+		</script>
+		</body>
+</html>

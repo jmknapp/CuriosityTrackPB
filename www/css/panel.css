@@ -1,0 +1,69 @@
+#infoBtn {
+    z-level: 9999;
+    position: absolute;
+    background: url('../img/info-2-64.png') no-repeat;
+    border: 0px solid black;
+    border-radius: 5px;
+    bottom: 310px;
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+    transition: border 1s;
+    opacity: 0.5 ;
+}
+
+#shareBtn {
+    z-level: 9999;
+    position: absolute;
+    background: url('../img/sharethis-64.png') no-repeat;
+    border: 0px solid black;
+    border-radius: 5px;
+    bottom: 240px;
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+    transition: border 1s;
+    opacity: 0.5 ;
+}
+
+#logBtn {
+    z-level: 9999;
+    position: absolute;
+    background: url('../img/view-details-64.png') no-repeat;
+    border: 0px solid black;
+    border-radius: 5px;
+    bottom: 170px;
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+    transition: border 1s;
+    opacity: 0.5 ;
+}
+
+#imgBtn {
+    z-level: 9999;
+    position: absolute;
+    background: url('../img/google-images-64.png') no-repeat;
+    border: 0px solid black;
+    border-radius: 5px;
+    bottom: 100px;
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+    transition: border 1s;
+    opacity: 0.5 ;
+}
+
+#toolsBtn {
+    z-level: 9999;
+    position: absolute;
+    background: url('../img/wrench-64.png') no-repeat;
+    border: 0px solid black;
+    border-radius: 5px;
+    bottom: 30px;
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+    transition: border 1s;
+    opacity: 0.5 ;
+}

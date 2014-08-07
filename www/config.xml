@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.curiositytrack" version="0.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap = "http://phonegap.com/ns/1.0">
+    <name>CuriosityTrack</name>
+    <description>
+        Mars Science Laboratory Curiosity Rover track map
+    </description>
+    <author email="jmknapp@gmail.com" href="http://curiositytrack.com">
+        Joe Knapp
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
+</widget>
