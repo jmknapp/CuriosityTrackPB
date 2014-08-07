@@ -513,7 +513,7 @@ function infoBtnAction() {
 }
 
 function shareBtnAction() {
-    window.plugins.socialsharing.share('A cool Mars rover tracking app', 'Mars Rover tracking app', null, 'https://play.google.com/store/apps/details?id=com.curiositytrack')
+    window.plugins.socialsharing.share('A cool Mars rover tracking app', 'Mars Rover tracking app', null, 'http://curiositytrack.com')
 }
 
 function logBtnAction() {
