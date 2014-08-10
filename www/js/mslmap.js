@@ -320,6 +320,7 @@ eventListeners: {
 
   //navigator.splashscreen.hide();
   $("#buttons").hide() ;
+  driveinfotoast() ;
 }
 
 function recenter() {
