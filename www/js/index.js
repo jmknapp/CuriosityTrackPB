@@ -38,6 +38,8 @@ console.log("XYZZY: in app initialize") ;
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+// temporarily prevent GCM registration for ios app
+if (0) {
         var parentElement = document.getElementById(id);
         //var listeningElement = parentElement.querySelector('.listening');
         //var receivedElement = parentElement.querySelector('.received');
@@ -48,6 +50,7 @@ console.log("XYZZY: in app initialize") ;
         //receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+}
     },
 
 // result contains any message sent from the plugin call
