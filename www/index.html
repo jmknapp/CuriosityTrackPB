@@ -80,7 +80,7 @@
 				var sstatus = testserver() ;
 				if (sstatus != 1) {
 					alert("Can't get latest rover track info. Internet connection or server not available.") ;
-					navigator.app.exitApp();
+					app.exitApp();
 				}
 				gettrack() ;
 				getlastdrive() ;
