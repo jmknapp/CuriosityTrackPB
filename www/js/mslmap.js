@@ -93,7 +93,9 @@ function gettrack() {
        getdrive();
       },
      error: function(xhr, status, error) {
-       alert('gettrack ' + status);
+       $().toastmessage('showNoticeToast', "Couldn't get rover track data. No internet connectivity to server?");
+       traverse.push(new OpenLayers.Geometry.Point(landingx,landingy));
+       //alert('gettrack ' + status);
      }
   });
 }
@@ -112,7 +114,9 @@ $.ajax({
      init() ;
     },
    error: function(xhr, status, error) {
-     alert('getdrive ' + status);
+     //$().toastmessage('showNoticeToast', "Couldn't get rover most recent drive data. No internet connectivity to server?");
+     drive.push(new OpenLayers.Geometry.Point(landingx,landingy));
+     //alert('getdrive ' + status);
    }
   });
 }
