@@ -79,7 +79,6 @@ function testserver() {
 
 // load overall track
 function driveinfotoast() {
-  traverse = new Array() ;
   var scale = 1.88/4 ;
   if (toastbusy != 1) {
     toastbusy = 1 ;
@@ -299,11 +298,12 @@ eventListeners: {
   var vectorbk = new OpenLayers.Layer.Vector("Track", {styleMap: styleMapBk});
   var vectordrive = new OpenLayers.Layer.Vector("Drive 219", {styleMap: styleDrive});
   vector.addFeatures([new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(traverse))]);
-  vectorbk.addFeatures([new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(traverse))]);
+  //vectorbk.addFeatures([new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(traverse))]);
   vectordrive.addFeatures([new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(drive))]);
 
   map.addLayers([
-      baseLayer,crop1,crop2,crop3,crop4,crop5,crop6,ctx,tmsoverlayLR09149,tmsoverlayLR018854,tmsoverlayLR09650,tmsoverlay,vectorbk,vector,vectordrive,markers
+      //baseLayer,crop1,crop2,crop3,crop4,crop5,crop6,ctx,tmsoverlayLR09149,tmsoverlayLR018854,tmsoverlayLR09650,tmsoverlay,vectorbk,vector,vectordrive,markers
+      baseLayer,crop1,crop2,crop3,crop4,crop5,crop6,ctx,tmsoverlayLR09149,tmsoverlayLR018854,tmsoverlayLR09650,tmsoverlay,vector,vectordrive,markers
   ]);
 
   map.zoomToExtent( mapBoundsBASE.transform(map.displayProjection, map.projection ) );
