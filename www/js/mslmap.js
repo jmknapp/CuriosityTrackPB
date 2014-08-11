@@ -104,7 +104,7 @@ function gettrack() {
   var scale = 1.88/4 ;
   $.ajax({
      type: "GET",
-     url: "http://curiosityrover.com/tracking/json/odom.json",
+     url: "http://curiosityrover.com/tracking/json/odom2.json",
      dataType: "json",
      success: function(data) {
        $.each(data, function(){
