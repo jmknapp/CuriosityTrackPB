@@ -78,7 +78,8 @@
 				    }
 				};
 				while (testserver() != 1) {
-					//alert("Can't get latest rover track info. Internet connection or server not available.") ;
+					alert("Can't get latest rover track info. Internet connection or server not available.") ;
+if (0) {
 					$().toastmessage('showToast', {
     						text     : "server not available.",
     						sticky   : true,
@@ -86,6 +87,7 @@
     						position     : 'middle-center',
     						closeText     : 'RETRY'
 					});
+}
 				}
 				gettrack() ;
 				getlastdrive() ;
