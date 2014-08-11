@@ -339,6 +339,9 @@ eventListeners: {
   else
   	map.setCenter(lonlat,18) ;
 
+  traverse = null ;  // done with traverse
+  drive = null ;  // done with drive
+
   //navigator.splashscreen.hide();
   $("#buttons").hide() ;
   driveinfotoast() ;
