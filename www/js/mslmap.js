@@ -87,9 +87,10 @@ function driveinfotoast() {
        url: "http://curiosityrover.com/tracking/ajax/driveinfotoast.php",
        dataType: "html",
        success: function(data) {
-	  $().toastmessage({stayTime : 10000});
-	  $().toastmessage({close : function(){toastbusy = 0}});
-	  $().toastmessage('showNoticeToast', data);
+	  window.plugins.toast.showShortTop('Hello there!', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)})
+	  //$().toastmessage({stayTime : 10000});
+	  //$().toastmessage({close : function(){toastbusy = 0}});
+	  //$().toastmessage('showNoticeToast', data);
         },
        error: function(xhr, status, error) {
          alert('getdriveinfo ' + status);
