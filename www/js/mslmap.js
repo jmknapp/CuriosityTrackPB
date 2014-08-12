@@ -1,5 +1,4 @@
 var map, layer;
-var mapBounds_full = new OpenLayers.Bounds(-180.000000, -90.0, 180.0, 90.0);
 var mapBounds_crop1 = new OpenLayers.Bounds(-180.000000, 59.998822, 179.996920, 85.051129);
 var mapBounds_crop2 = new OpenLayers.Bounds(-180.000000, 30.001135, 179.996611, 60.000000);
 var mapBounds_crop3 = new OpenLayers.Bounds(-180.000000, 0.001074, 179.999825, 30.000000);
@@ -12,6 +11,8 @@ var mapBoundsLR018854 = new OpenLayers.Bounds( 137.359362, -4.679285, 137.401471
 var mapBoundsLR09650 = new OpenLayers.Bounds(137.252440, -4.801559, 137.377471, -4.665560);
 var mapBoundsLR09149 = new OpenLayers.Bounds(137.348560, -4.789745, 137.469506, -4.654738);
 
+var traverse = new Array() ;
+var drive = new Array() ;
 var mapMinZoom = 8;
 var mapMaxZoom = 8;
 var mapMinZoomCTX = 8;
@@ -58,7 +59,6 @@ function getlastdrive() {
 
 // load overall track
 function driveinfotoast() {
-  traverse = new Array() ;
   var scale = 1.88/4 ;
   if (toastbusy != 1) {
     toastbusy = 1 ;
@@ -101,7 +101,6 @@ function testserver() {
 
 // load overall track
 function gettrack() {
-  traverse = new Array() ;
   var scale = 1.88/4 ;
   $.ajax({
      type: "GET",
@@ -120,7 +119,6 @@ function gettrack() {
 }
 
 function getdrive() {
-drive = new Array() ;
 var scale = 1.88/4 ;
 $.ajax({
    type: "GET",
@@ -251,10 +249,7 @@ eventListeners: {
                             isBaseLayer: false
     });
 
-
-  var osm = new OpenLayers.Layer.OSM();
   var baseLayer = new OpenLayers.Layer("Blank",{isBaseLayer: true});
-
 
   var size = new OpenLayers.Size(24,30);
   var offset = new OpenLayers.Pixel(-(size.w)-1, -size.h/2);
@@ -338,6 +333,10 @@ eventListeners: {
   	map.setCenter(lonlat,urlzoom) ;
   else
   	map.setCenter(lonlat,18) ;
+
+   // done with traverse and drive arrays
+   traverse = null ;
+   drive = null ;
 
   //navigator.splashscreen.hide();
   $("#buttons").hide() ;
