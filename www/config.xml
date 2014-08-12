@@ -74,4 +74,6 @@
 
     <gap:splash src="splash.png" gap:platform="android" />
     <preference name="orientation" value="portrait" />
+    <preference name="android-minSdkVersion" value="11" />
+    <preference name="android-targetSdkVersion" value="14" />
     </widget>
