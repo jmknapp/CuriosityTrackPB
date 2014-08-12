@@ -1,11 +1,5 @@
 var map, layer;
 var mapBounds_full = new OpenLayers.Bounds(-180.000000, -90.0, 180.0, 90.0);
-var mapBounds_crop1 = new OpenLayers.Bounds(-180.000000, 59.998822, 179.996920, 85.051129);
-var mapBounds_crop2 = new OpenLayers.Bounds(-180.000000, 30.001135, 179.996611, 60.000000);
-var mapBounds_crop3 = new OpenLayers.Bounds(-180.000000, 0.001074, 179.999825, 30.000000);
-var mapBounds_crop4 = new OpenLayers.Bounds(-180.000000, -29.999070, 179.999825, 0.000000);
-var mapBounds_crop5 = new OpenLayers.Bounds(-180.000000, -59.999344, 179.996611, -30.000000);
-var mapBounds_crop6 = new OpenLayers.Bounds(-180.000000, -85.051129, 179.996920, -60.000000);
 var mapBounds_ctx = new OpenLayers.Bounds(136.696260, -5.333154, 137.862717, -4.132530);
 var mapBoundsBASE = new OpenLayers.Bounds( 137.380794, -4.64535890429, 137.465011675, -4.53738741241);
 var mapBoundsLR018854 = new OpenLayers.Bounds( 137.359362, -4.679285, 137.401471, -4.637177);
@@ -174,48 +168,6 @@ eventListeners: {
 
   map = new OpenLayers.Map('mapdiv', options);
 
-  crop1 = new OpenLayers.Layer.TMS("Mars_Viking_90N_60N", "https://s3.amazonaws.com/GaleMap1/MV1TMS/${z}/${x}/${y}.png", {
-    transitionEffect: 'resize',
-    numZoomLevels: mvnzoom,
-    type: 'png', getURL: overlay_getTileURLmv1,
-    isBaseLayer: false
-  });
-
-  crop2 = new OpenLayers.Layer.TMS("Mars_Viking_60N_30N", "https://s3.amazonaws.com/GaleMap1/MV2TMS/${z}/${x}/${y}.png", {
-    transitionEffect: 'resize',
-    kkmZoomLevels: mvnzoom,
-    type: 'png', getURL: overlay_getTileURLmv2,
-    isBaseLayer: false
-  });
-
-  crop3 = new OpenLayers.Layer.TMS("Mars_Viking_30N_0", "https://s3.amazonaws.com/GaleMap1/MV3TMS/${z}/${x}/${y}.png", {
-    transitionEffect: 'resize',
-    numZoomLevels: mvnzoom,
-    type: 'png', getURL: overlay_getTileURLmv3,
-    isBaseLayer: false
-  });
-
-  crop4 = new OpenLayers.Layer.TMS("Mars_Viking_0_30S", "https://s3.amazonaws.com/GaleMap1/MV4TMS/${z}/${x}/${y}.png", {
-    transitionEffect: 'resize',
-    numZoomLevels: mvnzoom,
-    type: 'png', getURL: overlay_getTileURLmv4,
-    isBaseLayer: false
-  });
-
-  crop5 = new OpenLayers.Layer.TMS("Mars_Viking_30S_60S", "https://s3.amazonaws.com/GaleMap1/MV5TMS/${z}/${x}/${y}.png", {
-    transitionEffect: 'resize',
-    numZoomLevels: mvnzoom,
-    type: 'png', getURL: overlay_getTileURLmv5,
-    isBaseLayer: false
-  });
-
-  crop6 = new OpenLayers.Layer.TMS("Mars_Viking_60S_90S", "https://s3.amazonaws.com/GaleMap1/MV6TMS/${z}/${x}/${y}.png", {
-    transitionEffect: 'resize',
-    numZoomLevels: mvnzoom,
-    type: 'png', getURL: overlay_getTileURLmv6,
-    isBaseLayer: false
-  });
-
   ctx = new OpenLayers.Layer.XYZ("MRO CTX", "https://s3.amazonaws.com/GaleMap1/GaleCTXadj4/${z}/${x}/${y}.png", {
     transitionEffect: 'resize',
     type: 'png',
@@ -303,19 +255,13 @@ eventListeners: {
   vectordrive.addFeatures([new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(drive))]);
 
   map.addLayers([
-      baseLayer,crop1,crop2,crop3,crop4,crop5,crop6,ctx,tmsoverlayLR09149,tmsoverlayLR018854,tmsoverlayLR09650,tmsoverlay,vectorbk,vector,vectordrive,markers
+      baseLayer,ctx,tmsoverlayLR09149,tmsoverlayLR018854,tmsoverlayLR09650,tmsoverlay,vectorbk,vector,vectordrive,markers
   ]);
 
   map.zoomToExtent( mapBoundsBASE.transform(map.displayProjection, map.projection ) );
   map.zoomToExtent( mapBoundsLR018854.transform(map.displayProjection, map.projection ) );
   map.zoomToExtent( mapBoundsLR09149.transform(map.displayProjection, map.projection ) );
   map.zoomToExtent( mapBoundsLR09650.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBounds_crop1.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBounds_crop2.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBounds_crop3.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBounds_crop4.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBounds_crop5.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBounds_crop6.transform(map.displayProjection, map.projection ) );
   map.zoomToExtent( mapBounds_ctx.transform(map.displayProjection, map.projection ) );
 
   OpenLayers.Util.onImageLoadError = function () {
@@ -429,61 +375,6 @@ function overlay_getTileURL_LR018854(bounds) {
 	} else {
 		return "http://www.maptiler.org/img/none.png";
 	}
-}
-
-function overlay_getTileURLmv1(bounds) {
-    var res = this.map.getResolution();
-    var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
-    var y = Math.round((bounds.bottom - this.tileOrigin.lat) / (res * this.tileSize.h));
-    var z = this.map.getZoom();
-    if (z <= 8 && mapBounds_crop1.intersectsBounds( bounds )) {
-        return "https://s3.amazonaws.com/GaleMap1/MV1TMS/" + z + "/" + x + "/" + y + "." + this.type;
-    }
-}
-function overlay_getTileURLmv2(bounds) {
-    var res = this.map.getResolution();
-    var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
-    var y = Math.round((bounds.bottom - this.tileOrigin.lat) / (res * this.tileSize.h));
-    var z = this.map.getZoom();
-    if (z <= 8 && mapBounds_crop2.intersectsBounds( bounds )) {
-        return "https://s3.amazonaws.com/GaleMap1/MV2TMS/" + z + "/" + x + "/" + y + "." + this.type;
-    }
-}
-function overlay_getTileURLmv3(bounds) {
-    var res = this.map.getResolution();
-    var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
-    var y = Math.round((bounds.bottom - this.tileOrigin.lat) / (res * this.tileSize.h));
-    var z = this.map.getZoom();
-    if (z <= 8 && mapBounds_crop3.intersectsBounds( bounds )) {
-        return "https://s3.amazonaws.com/GaleMap1/MV3TMS/" + z + "/" + x + "/" + y + "." + this.type;
-    }
-}
-function overlay_getTileURLmv4(bounds) {
-    var res = this.map.getResolution();
-    var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
-    var y = Math.round((bounds.bottom - this.tileOrigin.lat) / (res * this.tileSize.h));
-    var z = this.map.getZoom();
-    if (z <= 8 && mapBounds_crop4.intersectsBounds( bounds )) {
-        return "https://s3.amazonaws.com/GaleMap1/MV4TMS/" + z + "/" + x + "/" + y + "." + this.type;
-    }
-}
-function overlay_getTileURLmv5(bounds) {
-    var res = this.map.getResolution();
-    var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
-    var y = Math.round((bounds.bottom - this.tileOrigin.lat) / (res * this.tileSize.h));
-    var z = this.map.getZoom();
-    if (z <= 8 && mapBounds_crop5.intersectsBounds( bounds )) {
-        return "https://s3.amazonaws.com/GaleMap1/MV5TMS/" + z + "/" + x + "/" + y + "." + this.type;
-    }
-}
-function overlay_getTileURLmv6(bounds) {
-    var res = this.map.getResolution();
-    var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
-    var y = Math.round((bounds.bottom - this.tileOrigin.lat) / (res * this.tileSize.h));
-    var z = this.map.getZoom();
-    if (z <= 8 && mapBounds_crop6.intersectsBounds( bounds )) {
-        return "https://s3.amazonaws.com/GaleMap1/MV6TMS/" + z + "/" + x + "/" + y + "." + this.type;
-    }
 }
 
 function getWindowHeight() {
