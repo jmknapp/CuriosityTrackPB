@@ -255,14 +255,15 @@ eventListeners: {
   vectordrive.addFeatures([new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(drive))]);
 
   map.addLayers([
-      baseLayer,ctx,tmsoverlayLR09149,tmsoverlayLR018854,tmsoverlayLR09650,tmsoverlay,vectorbk,vector,vectordrive,markers
+      //baseLayer,ctx,tmsoverlayLR09149,tmsoverlayLR018854,tmsoverlayLR09650,tmsoverlay,vectorbk,vector,vectordrive,markers
+      tmsoverlayLR018854,vectorbk,vector,vectordrive,markers
   ]);
 
-  map.zoomToExtent( mapBoundsBASE.transform(map.displayProjection, map.projection ) );
+  //map.zoomToExtent( mapBoundsBASE.transform(map.displayProjection, map.projection ) );
   map.zoomToExtent( mapBoundsLR018854.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBoundsLR09149.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBoundsLR09650.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBounds_ctx.transform(map.displayProjection, map.projection ) );
+  //map.zoomToExtent( mapBoundsLR09149.transform(map.displayProjection, map.projection ) );
+  //map.zoomToExtent( mapBoundsLR09650.transform(map.displayProjection, map.projection ) );
+  //map.zoomToExtent( mapBounds_ctx.transform(map.displayProjection, map.projection ) );
 
   OpenLayers.Util.onImageLoadError = function () {
       this.src = "notile.png";
