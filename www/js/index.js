@@ -41,8 +41,10 @@ console.log("XYZZY: in app initialize") ;
         var parentElement = document.getElementById(id);
         //var listeningElement = parentElement.querySelector('.listening');
         //var receivedElement = parentElement.querySelector('.received');
-	var pushNotification = window.plugins.pushNotification;
-	pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"206191599947","ecb":"app.onNotificationGCM"});
+	if (device.platform == 'Android') {
+		var pushNotification = window.plugins.pushNotification;
+		pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"206191599947","ecb":"app.onNotificationGCM"});
+	}
 
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
