@@ -137,7 +137,7 @@ $.ajax({
 }
 
 function tend() {
-	//scaleline.update() ;
+	scaleline.update() ;
 }
 
 function init() {
