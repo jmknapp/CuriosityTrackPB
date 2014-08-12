@@ -77,6 +77,9 @@
 				       return results[1] || 0;
 				    }
 				};
+				while (testserver() != 1) {
+                                        alert("Can't get latest rover track info. Internet connection or server not available.") ;
+                                }
 				gettrack() ;
 				getlastdrive() ;
 				$( "#toolsBtn" ).click(function(){toolsBtnAction()}) ;
