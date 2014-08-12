@@ -535,7 +535,11 @@ function infoBtnAction() {
 }
 
 function shareBtnAction() {
-    window.plugins.socialsharing.share('A cool Mars rover tracking app', 'Mars Rover tracking app', null, 'http://curiositytrack.com')
+    var projWGS84 = new OpenLayers.Projection("EPSG:4326");
+    var proj900913 = new OpenLayers.Projection("EPSG:900913");
+    var mapcenter =  map.getCenter().transform(proj900913,projWGS84);
+    var mapurl = 'http://curiosityrover.com/rovermap1.html?zoom=' + map.getZoom() + '&lat=' + mapcenter.lat + '&lon=' + mapcenter.lon ;
+    window.plugins.socialsharing.share('Check out this Mars rover map', 'Curiosity Mars Rover tracking app', null, mapurl)
 }
 
 function logBtnAction() {
