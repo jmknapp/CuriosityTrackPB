@@ -45,6 +45,7 @@ console.log("XYZZY: in app initialize") ;
 		//var pushNotification = window.plugins.pushNotification;
 		//pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"206191599947","ecb":"app.onNotificationGCM"});
 	//}
+alert(device.platform) ;
 	if ( device.platform == 'android' || device.platform == 'Android' )
 	{
     		pushNotification.register(
