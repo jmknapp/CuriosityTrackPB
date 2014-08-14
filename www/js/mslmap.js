@@ -214,7 +214,8 @@ eventListeners: {
     isBaseLayer: false
   });
 
-  ctx = new OpenLayers.Layer.XYZ("MRO CTX", "https://s3.amazonaws.com/GaleMap1/GaleCTXadj4/${z}/${x}/${y}.png", {
+  //ctx = new OpenLayers.Layer.XYZ("MRO CTX", "https://s3.amazonaws.com/GaleMap1/GaleCTXadj4/${z}/${x}/${y}.png", {
+  ctx = new OpenLayers.Layer.XYZ("MRO CTX", "https://s3.amazonaws.com/GaleMap1/GaleCTXadj4/", {
     transitionEffect: 'resize',
     type: 'png',
     alpha: false,
@@ -365,7 +366,8 @@ function ctxTileURL(bounds) {
 		//console.log( this.url + z + "/" + x + "/" + y + "." + this.type);
 		var imgurl =  this.url + z + "/" + x + "/" + y + "." + this.type;
     } else {
-		var imgurl =  "http://www.maptiler.org/img/none.png";
+		//var imgurl =  "http://www.maptiler.org/img/none.png";
+		var imgurl =  "img/none.png";
     }
     //console.log(imgurl) ;
     return imgurl ;
@@ -383,7 +385,8 @@ function overlay_getTileURL_LR09149(bounds) {
 		//console.log( this.url + z + "/" + x + "/" + y + "." + this.type);
 		var imgurl =  this.url + z + "/" + x + "/" + y + "." + this.type;
     } else {
-		var imgurl =  "http://www.maptiler.org/img/none.png";
+		//var imgurl =  "http://www.maptiler.org/img/none.png";
+		var imgurl =  "img/none.png";
     }
     //console.log(imgurl) ;
     return imgurl ;
@@ -398,7 +401,8 @@ function overlay_getTileURL_LR09650(bounds) {
 		//console.log( this.url + z + "/" + x + "/" + y + "." + this.type);
 		var imgurl =  this.url + z + "/" + x + "/" + y + "." + this.type;
     } else {
-		var imgurl =  "http://www.maptiler.org/img/none.png";
+		//var imgurl =  "http://www.maptiler.org/img/none.png";
+		var imgurl =  "img/none.png";
     }
     //console.log(imgurl) ;
     return imgurl ;
@@ -416,7 +420,8 @@ function overlay_getTileURL(bounds) {
 		//console.log( this.url + z + "/" + x + "/" + y + "." + this.type);
 		var imgurl =  this.url + z + "/" + x + "/" + y + "." + this.type;
     } else {
-		var imgurl =  "http://www.maptiler.org/img/none.png";
+		//var imgurl =  "http://www.maptiler.org/img/none.png";
+		var imgurl =  "img/none.png";
     }
     //console.log(imgurl) ;
     return imgurl ;
@@ -434,7 +439,8 @@ function overlay_getTileURL_LR018854(bounds) {
 		//console.log( this.url + z + "/" + x + "/" + y + "." + this.type);
 		var imgurl =  this.url + z + "/" + x + "/" + y + "." + this.type;
     } else {
-		var imgurl =  "http://www.maptiler.org/img/none.png";
+		//var imgurl =  "http://www.maptiler.org/img/none.png";
+		var imgurl =  "img/none.png";
     }
     //console.log(imgurl) ;
     return imgurl ;
@@ -447,6 +453,10 @@ function overlay_getTileURLmv1(bounds) {
     var z = this.map.getZoom();
     if (z <= 8 && mapBounds_crop1.intersectsBounds( bounds )) {
         return "https://s3.amazonaws.com/GaleMap1/MV1TMS/" + z + "/" + x + "/" + y + "." + this.type;
+    }  else {
+                //var imgurl =  "http://www.maptiler.org/img/none.png";
+                var imgurl =  "img/none.png";
+		return imgurl ;
     }
 }
 function overlay_getTileURLmv2(bounds) {
@@ -456,7 +466,12 @@ function overlay_getTileURLmv2(bounds) {
     var z = this.map.getZoom();
     if (z <= 8 && mapBounds_crop2.intersectsBounds( bounds )) {
         return "https://s3.amazonaws.com/GaleMap1/MV2TMS/" + z + "/" + x + "/" + y + "." + this.type;
+    }  else {
+                //var imgurl =  "http://www.maptiler.org/img/none.png";
+                var imgurl =  "img/none.png";
+                return imgurl ;
     }
+
 }
 function overlay_getTileURLmv3(bounds) {
     var res = this.map.getResolution();
@@ -465,7 +480,12 @@ function overlay_getTileURLmv3(bounds) {
     var z = this.map.getZoom();
     if (z <= 8 && mapBounds_crop3.intersectsBounds( bounds )) {
         return "https://s3.amazonaws.com/GaleMap1/MV3TMS/" + z + "/" + x + "/" + y + "." + this.type;
+    }  else {
+                //var imgurl =  "http://www.maptiler.org/img/none.png";
+                var imgurl =  "img/none.png";
+                return imgurl ;
     }
+
 }
 function overlay_getTileURLmv4(bounds) {
     var res = this.map.getResolution();
@@ -474,7 +494,12 @@ function overlay_getTileURLmv4(bounds) {
     var z = this.map.getZoom();
     if (z <= 8 && mapBounds_crop4.intersectsBounds( bounds )) {
         return "https://s3.amazonaws.com/GaleMap1/MV4TMS/" + z + "/" + x + "/" + y + "." + this.type;
+    }  else {
+                //var imgurl =  "http://www.maptiler.org/img/none.png";
+                var imgurl =  "img/none.png";
+                return imgurl ;
     }
+
 }
 function overlay_getTileURLmv5(bounds) {
     var res = this.map.getResolution();
@@ -483,7 +508,12 @@ function overlay_getTileURLmv5(bounds) {
     var z = this.map.getZoom();
     if (z <= 8 && mapBounds_crop5.intersectsBounds( bounds )) {
         return "https://s3.amazonaws.com/GaleMap1/MV5TMS/" + z + "/" + x + "/" + y + "." + this.type;
+    }  else {
+                //var imgurl =  "http://www.maptiler.org/img/none.png";
+                var imgurl =  "img/none.png";
+                return imgurl ;
     }
+
 }
 function overlay_getTileURLmv6(bounds) {
     var res = this.map.getResolution();
@@ -492,7 +522,12 @@ function overlay_getTileURLmv6(bounds) {
     var z = this.map.getZoom();
     if (z <= 8 && mapBounds_crop6.intersectsBounds( bounds )) {
         return "https://s3.amazonaws.com/GaleMap1/MV6TMS/" + z + "/" + x + "/" + y + "." + this.type;
+    }  else {
+                //var imgurl =  "http://www.maptiler.org/img/none.png";
+                var imgurl =  "img/none.png";
+                return imgurl ;
     }
+
 }
 
 function getWindowHeight() {
