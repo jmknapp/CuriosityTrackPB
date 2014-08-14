@@ -36,6 +36,7 @@ var landingyoffset = -47 ;
 var landingx=landingxoffset+xmarker ;
 var landingy=landingyoffset+ymarker ;
 var lonlat ;
+var xlonlat ;
 var toastbusy = 0;
 var showtools = 0 ;
 var scaleline ;
@@ -330,7 +331,7 @@ eventListeners: {
 
   //lonlat = new OpenLayers.LonLat(landingx-6488.975,landingy-7772.826160);
   lonlat = new OpenLayers.LonLat(traverse[traverse.length-1].x,traverse[traverse.length-1].y) ;
-  var xlonlat = new OpenLayers.LonLat(traverse[traverse.length-1].x+25,traverse[traverse.length-1].y+25) ;
+  xlonlat = new OpenLayers.LonLat(traverse[traverse.length-1].x+25,traverse[traverse.length-1].y+25) ;
   if (urlzoom != null)
   	map.setCenter(lonlat,urlzoom) ;
   else
@@ -350,10 +351,14 @@ eventListeners: {
 }
 
 function recenter() {
-  if (urlzoom != null)
+  if (urlzoom != null) {
   	map.setCenter(lonlat,urlzoom) ;
-  else
+  	map.setCenter(xlonlat,urlzoom) ;
+  }
+  else {
   	map.setCenter(lonlat,18) ;
+  	map.setCenter(xlonlat,18) ;
+  }
 }
 
 function ctxTileURL(bounds) {
