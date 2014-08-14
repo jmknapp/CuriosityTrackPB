@@ -330,6 +330,7 @@ eventListeners: {
 
   //lonlat = new OpenLayers.LonLat(landingx-6488.975,landingy-7772.826160);
   lonlat = new OpenLayers.LonLat(traverse[traverse.length-1].x,traverse[traverse.length-1].y) ;
+  var xlonlat = new OpenLayers.LonLat(traverse[traverse.length-1].x+25,traverse[traverse.length-1].y+25) ;
   if (urlzoom != null)
   	map.setCenter(lonlat,urlzoom) ;
   else
@@ -345,6 +346,7 @@ eventListeners: {
   //navigator.splashscreen.hide();
   $("#buttons").hide() ;
   driveinfotoast() ;
+  map.setCenter(xlonlat,urlzoom) ;
 }
 
 function recenter() {
