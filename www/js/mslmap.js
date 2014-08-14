@@ -298,20 +298,20 @@ eventListeners: {
   vectordrive.addFeatures([new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(drive))]);
 
   map.addLayers([
-      baseLayer,crop1,crop2,crop3,crop4,crop5,crop6,ctx,tmsoverlayLR09149,tmsoverlayLR018854,tmsoverlayLR09650,tmsoverlay,vectorbk,vector,vectordrive,markers
+      baseLayer
   ]);
 
-  map.zoomToExtent( mapBoundsBASE.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBoundsLR018854.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBoundsLR09149.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBoundsLR09650.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBounds_crop1.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBounds_crop2.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBounds_crop3.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBounds_crop4.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBounds_crop5.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBounds_crop6.transform(map.displayProjection, map.projection ) );
-  map.zoomToExtent( mapBounds_ctx.transform(map.displayProjection, map.projection ) );
+  mapBoundsBASE.transform(map.displayProjection, map.projection );
+  mapBoundsLR018854.transform(map.displayProjection, map.projection );
+  mapBoundsLR09149.transform(map.displayProjection, map.projection );
+  mapBoundsLR09650.transform(map.displayProjection, map.projection );
+  mapBounds_crop1.transform(map.displayProjection, map.projection );
+  mapBounds_crop2.transform(map.displayProjection, map.projection );
+  mapBounds_crop3.transform(map.displayProjection, map.projection );
+  mapBounds_crop4.transform(map.displayProjection, map.projection );
+  mapBounds_crop5.transform(map.displayProjection, map.projection );
+  mapBounds_crop6.transform(map.displayProjection, map.projection );
+  mapBounds_ctx.transform(map.displayProjection, map.projection );
 
   OpenLayers.Util.onImageLoadError = function () {
       this.src = "notile.png";
@@ -334,6 +334,9 @@ eventListeners: {
   else
   	map.setCenter(lonlat,18) ;
 
+  map.addLayers([
+      crop1,crop2,crop3,crop4,crop5,crop6,ctx,tmsoverlayLR09149,tmsoverlayLR018854,tmsoverlayLR09650,tmsoverlay,vectorbk,vector,vectordrive,markers
+  ]);
    // done with traverse and drive arrays
    traverse = null ;
    drive = null ;
@@ -359,11 +362,13 @@ function ctxTileURL(bounds) {
        z = z + 1;
     }
 	if (mapBounds_ctx.intersectsBounds( bounds ) && z >= mapMinZoomCTX && z <= mapMaxZoomCTX ) {
-       //console.log( this.url + z + "/" + x + "/" + y + "." + this.type);
-       return "https://s3.amazonaws.com/GaleMap1/GaleCTXadj4/"  + z + "/" + x + "/" + y + "." + this.type;
-	} else {
-		return "http://www.maptiler.org/img/none.png";
-	}
+		//console.log( this.url + z + "/" + x + "/" + y + "." + this.type);
+		var imgurl =  this.url + z + "/" + x + "/" + y + "." + this.type;
+    } else {
+		var imgurl =  "http://www.maptiler.org/img/none.png";
+    }
+    //console.log(imgurl) ;
+    return imgurl ;
 }
 
 function overlay_getTileURL_LR09149(bounds) {
@@ -375,11 +380,13 @@ function overlay_getTileURL_LR09149(bounds) {
        z = z + 1;
     }
 	if (mapBoundsLR09149.intersectsBounds( bounds ) && z >= mapMinZoomHiRISE09149 && z <= mapMaxZoomHiRISE09149 ) {
-       //console.log( this.url + z + "/" + x + "/" + y + "." + this.type);
-       return this.url + z + "/" + x + "/" + y + "." + this.type;
-	} else {
-		return "http://www.maptiler.org/img/none.png";
-	}
+		//console.log( this.url + z + "/" + x + "/" + y + "." + this.type);
+		var imgurl =  this.url + z + "/" + x + "/" + y + "." + this.type;
+    } else {
+		var imgurl =  "http://www.maptiler.org/img/none.png";
+    }
+    //console.log(imgurl) ;
+    return imgurl ;
 }
 
 function overlay_getTileURL_LR09650(bounds) {
@@ -387,15 +394,14 @@ function overlay_getTileURL_LR09650(bounds) {
     var x = Math.round((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
     var y = Math.round((bounds.bottom - this.tileOrigin.lat) / (res * this.tileSize.h));
     var z = this.map.getZoom();
-    if (this.map.baseLayer.name == 'Virtual Earth Roads' || this.map.baseLayer.name == 'Virtual Earth Aerial' || this.map.baseLayer.name == 'Virtual Earth Hybrid') {
-       z = z + 1;
-    }
     if (mapBoundsLR09650.intersectsBounds( bounds ) && z >= mapMinZoomHiRISE09650 && z <= mapMaxZoomHiRISE09650 ) {
 		//console.log( this.url + z + "/" + x + "/" + y + "." + this.type);
-		return this.url + z + "/" + x + "/" + y + "." + this.type;
-	} else {
-		return "http://www.maptiler.org/img/none.png";
-	}
+		var imgurl =  this.url + z + "/" + x + "/" + y + "." + this.type;
+    } else {
+		var imgurl =  "http://www.maptiler.org/img/none.png";
+    }
+    //console.log(imgurl) ;
+    return imgurl ;
 }
 
 function overlay_getTileURL(bounds) {
@@ -408,10 +414,12 @@ function overlay_getTileURL(bounds) {
     }
     if (mapBoundsBASE.intersectsBounds( bounds ) && z >= mapMinZoomHiRISE && z <= mapMaxZoomHiRISE ) {
 		//console.log( this.url + z + "/" + x + "/" + y + "." + this.type);
-		return this.url + z + "/" + x + "/" + y + "." + this.type;
-	} else {
-	   return "http://www.maptiler.org/img/none.png";
-	}
+		var imgurl =  this.url + z + "/" + x + "/" + y + "." + this.type;
+    } else {
+		var imgurl =  "http://www.maptiler.org/img/none.png";
+    }
+    //console.log(imgurl) ;
+    return imgurl ;
 }
 	
 function overlay_getTileURL_LR018854(bounds) {
@@ -423,11 +431,13 @@ function overlay_getTileURL_LR018854(bounds) {
        z = z + 1;
     }
     if (mapBoundsLR018854.intersectsBounds( bounds ) && z >= mapMinZoomHiRISE18854 && z <= mapMaxZoomHiRISE18854 ) {
-   		//console.log( this.url + z + "/" + x + "/" + y + "." + this.type);
-		return this.url + z + "/" + x + "/" + y + "." + this.type;
-	} else {
-		return "http://www.maptiler.org/img/none.png";
-	}
+		//console.log( this.url + z + "/" + x + "/" + y + "." + this.type);
+		var imgurl =  this.url + z + "/" + x + "/" + y + "." + this.type;
+    } else {
+		var imgurl =  "http://www.maptiler.org/img/none.png";
+    }
+    //console.log(imgurl) ;
+    return imgurl ;
 }
 
 function overlay_getTileURLmv1(bounds) {
