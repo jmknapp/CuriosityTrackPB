@@ -41,7 +41,6 @@ console.log("XYZZY: in app initialize") ;
         var parentElement = document.getElementById(id);
         //var listeningElement = parentElement.querySelector('.listening');
         //var receivedElement = parentElement.querySelector('.received');
-alert(device.platform) ;
 	if (device.platform == 'Android' || device.platform == 'android' ) {
 		var pushNotification = window.plugins.pushNotification;
 		pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"206191599947","ecb":"app.onNotificationGCM"});
@@ -77,6 +76,12 @@ tokenHandler:function(result) {
     // Your iOS push server needs to know the token before it can push to this device
     // here is where you might want to send it the token for later use.
     alert('device token = ' + result);
+    if ( result.length > 0 )
+    {
+        console.log("APN Regid " + result);
+        console.log('registration id = '+ result);
+	logAPNregistration(device.uuid,device.platform,device.model,device.version,result) ;
+    }
 },
 
 onNotificationGCM: function(e) {
@@ -85,7 +90,7 @@ onNotificationGCM: function(e) {
             case 'registered':
                 if ( e.regid.length > 0 )
                 {
-                    console.log("Regid " + e.regid);
+                    console.log("GCM Regid " + e.regid);
                     console.log('registration id = '+e.regid);
 		    logGCMregistration(device.uuid,device.platform,device.model,device.version,e.regid) ;
                 }

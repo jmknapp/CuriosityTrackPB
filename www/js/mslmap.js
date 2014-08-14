@@ -615,6 +615,20 @@ function logGCMregistration(uuid,platform,model,version,regid) {
     });
 }
 
+function logAPNregistration(uuid,platform,model,version,token) {
+   $.ajax({
+     type: "GET",
+     url: "http://curiosityrover.com/tracking/ajax/logAPNregistration.php?token="+token+"&uuid="+uuid+"&platform="+platform+"&model="+model+"&version="+version,
+     dataType: "html",
+     success: function(data) {
+        console.log("logged APN reg id with server, ret=" + data) ;
+      },
+     error: function(xhr, status, error) {
+        console.log("ERROR: couldn't log APN reg id with server") ;
+     }
+    });
+}
+
 // result contains any message sent from the plugin call
 function successHandler (result) {
     alert('result = ' + result);
