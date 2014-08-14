@@ -46,8 +46,7 @@ console.log("XYZZY: in app initialize") ;
 		//pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"206191599947","ecb":"app.onNotificationGCM"});
 	//}
 alert(device.platform) ;
-	if ( device.platform == 'android' || device.platform == 'Android' )
-	{
+	if ( device.platform == 'android' || device.platform == 'Android' ) {
     		pushNotification.register(
         		app.successHandler,
         		app.errorHandler, {
@@ -55,7 +54,7 @@ alert(device.platform) ;
             			"ecb":"app.onNotificationGCM"
         	});
 	}
-	else if ( device.platform == 'iOS' || device.platform == 'ios' )
+	else if ( device.platform == 'iOS' || device.platform == 'ios' ) {
 		pushNotification.register(
         		app.tokenHandler,
         		app.errorHandler, {
