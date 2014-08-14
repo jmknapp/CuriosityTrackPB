@@ -602,7 +602,6 @@ function imgBtnAction() {
 }
 
 function logGCMregistration(uuid,platform,model,version,regid) {
- if (device.platform == 'Android') {
    $.ajax({
      type: "GET",
      url: "http://curiosityrover.com/tracking/ajax/logGCMregistration.php?regid="+regid+"&uuid="+uuid+"&platform="+platform+"&model="+model+"&version="+version,
@@ -614,7 +613,6 @@ function logGCMregistration(uuid,platform,model,version,regid) {
         console.log("ERROR: couldn't log GCM reg id with server") ;
      }
     });
-  }
 }
 
 // result contains any message sent from the plugin call
