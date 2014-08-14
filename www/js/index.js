@@ -41,28 +41,21 @@ console.log("XYZZY: in app initialize") ;
         var parentElement = document.getElementById(id);
         //var listeningElement = parentElement.querySelector('.listening');
         //var receivedElement = parentElement.querySelector('.received');
-	//if (device.platform == 'Android') {
-		//var pushNotification = window.plugins.pushNotification;
-		//pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"206191599947","ecb":"app.onNotificationGCM"});
-	//}
 alert(device.platform) ;
-	if ( device.platform == 'android' || device.platform == 'Android' ) {
-    		pushNotification.register(
-        		app.successHandler,
-        		app.errorHandler, {
-            			"senderID":"206191599947",
-            			"ecb":"app.onNotificationGCM"
-        	});
+	if (device.platform == 'Android' || device.platform == 'android' ) {
+		var pushNotification = window.plugins.pushNotification;
+		pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"206191599947","ecb":"app.onNotificationGCM"});
 	}
-	else if ( device.platform == 'iOS' || device.platform == 'ios' ) {
+	else if (device.platform == 'iOS' || device.platform == 'ios' ) {
+		var pushNotification = window.plugins.pushNotification;
 		pushNotification.register(
-        		app.tokenHandler,
-        		app.errorHandler, {
-            			"badge":"true",
-            			"sound":"true",
-            			"alert":"true",
-            			"ecb":"app.onNotificationAPN"
-        	});
+                    app.tokenHandler,
+                    app.errorHandler, {
+                    "badge":"true",
+                    "sound":"true",
+                    "alert":"true",
+                    "ecb":"app.onNotificationAPN"
+                });
 	}
 
         //listeningElement.setAttribute('style', 'display:none;');
@@ -80,7 +73,7 @@ errorHandler:function(error) {
     console.log(error);
 },
 
-tokenHandler (result) {
+tokenHandler:function(result) {
     // Your iOS push server needs to know the token before it can push to this device
     // here is where you might want to send it the token for later use.
     alert('device token = ' + result);
