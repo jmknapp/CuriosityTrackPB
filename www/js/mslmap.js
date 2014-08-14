@@ -256,9 +256,9 @@ eventListeners: {
   var offset = new OpenLayers.Pixel(-(size.w)-1, -size.h/2);
   var mslsize = new OpenLayers.Size(32,32);
   var msloffset = new OpenLayers.Pixel(-(mslsize.w/2), -mslsize.h + 5);
-  var icon1 = new OpenLayers.Icon('http://curiosityrover.com/rayb24.png', size, offset);
-  var mslicon = new OpenLayers.Icon('http://curiosityrover.com/mslicon.png', mslsize, msloffset);
-  var siteicon = new OpenLayers.Icon('http://curiosityrover.com/siteicon.png', mslsize, msloffset);
+  var icon1 = new OpenLayers.Icon('img/rayb24.png', size, offset);
+  var mslicon = new OpenLayers.Icon('img/mslicon.png', mslsize, msloffset);
+  var siteicon = new OpenLayers.Icon('img/siteicon.png', mslsize, msloffset);
 
   var markers = new OpenLayers.Layer.Markers( "Markers" );
   var landingmarker = new OpenLayers.Marker(new OpenLayers.LonLat(landingx,landingy),icon1);
