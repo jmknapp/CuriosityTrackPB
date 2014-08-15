@@ -301,6 +301,8 @@ eventListeners: {
 
   map.addLayers([
       baseLayer
+
+  document.addEventListener("resume", onResume, false);
   ]);
 
   mapBoundsBASE.transform(map.displayProjection, map.projection );
@@ -349,6 +351,13 @@ eventListeners: {
   driveinfotoast() ;
   map.setCenter(xlonlat,urlzoom) ;
 }
+
+// Handle the resume event
+//
+function onResume() {
+	alert("resume") ;
+}
+
 
 function recenter() {
   if (urlzoom != null) {
