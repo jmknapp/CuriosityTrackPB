@@ -301,9 +301,9 @@ eventListeners: {
 
   map.addLayers([
       baseLayer
+  ]);
 
   document.addEventListener("resume", onResume, false);
-  ]);
 
   mapBoundsBASE.transform(map.displayProjection, map.projection );
   mapBoundsLR018854.transform(map.displayProjection, map.projection );
