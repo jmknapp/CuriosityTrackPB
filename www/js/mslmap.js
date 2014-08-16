@@ -348,6 +348,11 @@ eventListeners: {
   $("#buttons").hide() ;
   driveinfotoast() ;
   map.setCenter(xlonlat,urlzoom) ;
+  document.addEventListener("resume", onResume, false);
+}
+
+function onResume() {
+	alert("YO") ;
 }
 
 function recenter() {
