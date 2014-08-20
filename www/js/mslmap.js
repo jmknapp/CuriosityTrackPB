@@ -105,36 +105,20 @@ function gettrack() {
   var scale = 1.88/4 ;
   $.ajax({
      type: "GET",
-     url: "http://curiosityrover.com/tracking/json/odom.json",
+     url: "http://curiosityrover.com/tracking/json/trackinfo.json",
      dataType: "json",
      success: function(data) {
-       $.each(data, function(){
-       traverse.push(new OpenLayers.Geometry.Point(landingx+scale*this.x,landingy-scale*this.y));
+       $.each(data.traverse, function(){
+         traverse.push(new OpenLayers.Geometry.Point(landingx+scale*this.x,landingy-scale*this.y));
        });
-       getdrive() ;
+       $.each(data.drive, function(){
+         drive.push(new OpenLayers.Geometry.Point(landingx+scale*this.x,landingy-scale*this.y));
+       });
+       init() ;
       },
      error: function(xhr, status, error) {
        alert('gettrack ' + status);
      }
-  });
-}
-
-function getdrive() {
-var scale = 1.88/4 ;
-alert("in getdrive()") ;
-$.ajax({
-   type: "GET",
-   url: "http://curiosityrover.com/tracking/json/drive231.json",
-   dataType: "json",
-   success: function(data) {
-     $.each(data, function(){
-     drive.push(new OpenLayers.Geometry.Point(landingx+scale*this.x,landingy-scale*this.y));
-     });
-     init() ;
-    },
-   error: function(xhr, status, error) {
-     alert('getdrive ' + status);
-   }
   });
 }
 
