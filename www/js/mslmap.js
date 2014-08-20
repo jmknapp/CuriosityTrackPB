@@ -102,6 +102,7 @@ function testserver() {
 
 // load overall track
 function gettrack() {
+alert("in gettrack()") ;
   var scale = 1.88/4 ;
   $.ajax({
      type: "GET",
@@ -111,6 +112,7 @@ function gettrack() {
        $.each(data, function(){
        traverse.push(new OpenLayers.Geometry.Point(landingx+scale*this.x,landingy-scale*this.y));
        });
+alert("gettrack() success " + traverse[traverse.length-1].x) ;
        getdrive();
       },
      error: function(xhr, status, error) {

@@ -64,7 +64,11 @@
 		<div class="app">
 		<script  type="text/javascript">
 			$(document).ready(function(){
-				$(document).bind("mobileinit", function() {  $.support.cors = true; });
+				$(document).bind("mobileinit", function() {  
+					$.support.cors = true; 
+					$.mobile.allowCrossDomainPages = true;
+				});
+
 				$("#mapdiv").empty() ;
 				$( window ).on( "orientationchange", function( event ) {
                                         location.reload(true);
