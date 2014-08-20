@@ -120,6 +120,7 @@ function gettrack() {
 
 function getdrive() {
 var scale = 1.88/4 ;
+alert("in getdrive()") ;
 $.ajax({
    type: "GET",
    url: "http://curiosityrover.com/tracking/json/drive231.json",
