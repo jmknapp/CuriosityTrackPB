@@ -102,7 +102,6 @@ function testserver() {
 
 // load overall track
 function gettrack() {
-alert("in gettrack()") ;
   var scale = 1.88/4 ;
   $.ajax({
      type: "GET",
@@ -112,7 +111,6 @@ alert("in gettrack()") ;
        $.each(data, function(){
        traverse.push(new OpenLayers.Geometry.Point(landingx+scale*this.x,landingy-scale*this.y));
        });
-alert("gettrack() success " + traverse[traverse.length-1].x) ;
        getdrive();
       },
      error: function(xhr, status, error) {
@@ -123,6 +121,7 @@ alert("gettrack() success " + traverse[traverse.length-1].x) ;
 
 function getdrive() {
 var scale = 1.88/4 ;
+alert("in getdrive()") ;
 $.ajax({
    type: "GET",
    url: "http://curiosityrover.com/tracking/json/lastdrive.json",
@@ -131,6 +130,7 @@ $.ajax({
      $.each(data, function(){
      drive.push(new OpenLayers.Geometry.Point(landingx+scale*this.x,landingy-scale*this.y));
      });
+alert("getdrive() success " + drive[drive.length-1].x) ;
      init() ;
     },
    error: function(xhr, status, error) {
@@ -144,6 +144,7 @@ function tend() {
 }
 
 function init() {
+alert("in init()") ;
 	var mapdiv = document.getElementById("mapdiv") ;
 	var slmax = mapdiv.offsetWidth/5 ;
 	if (slmax > 100)
@@ -304,6 +305,7 @@ eventListeners: {
   map.addLayers([
       baseLayer
   ]);
+alert("added baselayer") ;
 
   mapBoundsBASE.transform(map.displayProjection, map.projection );
   mapBoundsLR018854.transform(map.displayProjection, map.projection );
