@@ -124,13 +124,13 @@ var scale = 1.88/4 ;
 alert("in getdrive()") ;
 $.ajax({
    type: "GET",
-   url: "http://curiosityrover.com/tracking/json/lastdrive.json",
+   url: "http://curiosityrover.com/tracking/json/drive231.json",
    dataType: "json",
    success: function(data) {
+alert("getdrive() success " + drive[drive.length-1].x) ;
      $.each(data, function(){
      drive.push(new OpenLayers.Geometry.Point(landingx+scale*this.x,landingy-scale*this.y));
      });
-alert("getdrive() success " + drive[drive.length-1].x) ;
      init() ;
     },
    error: function(xhr, status, error) {
