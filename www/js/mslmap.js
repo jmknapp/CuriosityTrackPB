@@ -126,10 +126,11 @@ $.ajax({
    url: "http://curiosityrover.com/tracking/json/drive231.json",
    dataType: "json",
    success: function(data) {
-alert("getdrive() success " + drive[drive.length-1].x) ;
+alert("getdrive() SUCCESS ") ;
      $.each(data, function(){
      drive.push(new OpenLayers.Geometry.Point(landingx+scale*this.x,landingy-scale*this.y));
      });
+alert("getdrive() success " + drive[drive.length-1].x) ;
      init() ;
     },
    error: function(xhr, status, error) {
