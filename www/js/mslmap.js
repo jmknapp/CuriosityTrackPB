@@ -120,7 +120,6 @@ function gettrack() {
 
 function getdrive() {
 var scale = 1.88/4 ;
-alert("in getdrive()") ;
 $.ajax({
    type: "GET",
    url: "http://curiosityrover.com/tracking/json/drive231.json",
@@ -142,7 +141,6 @@ function tend() {
 }
 
 function init() {
-alert("in init()") ;
 	var mapdiv = document.getElementById("mapdiv") ;
 	var slmax = mapdiv.offsetWidth/5 ;
 	if (slmax > 100)
@@ -303,7 +301,6 @@ eventListeners: {
   map.addLayers([
       baseLayer
   ]);
-alert("added baselayer") ;
 
   mapBoundsBASE.transform(map.displayProjection, map.projection );
   mapBoundsLR018854.transform(map.displayProjection, map.projection );
