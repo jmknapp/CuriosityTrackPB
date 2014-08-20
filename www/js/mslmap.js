@@ -111,7 +111,6 @@ function gettrack() {
        $.each(data, function(){
        traverse.push(new OpenLayers.Geometry.Point(landingx+scale*this.x,landingy-scale*this.y));
        });
-       getdrive();
       },
      error: function(xhr, status, error) {
        alert('gettrack ' + status);
