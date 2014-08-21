@@ -127,6 +127,9 @@ function tend() {
 }
 
 function init() {
+$().toastmessage({stayTime : 10000});
+$().toastmessage({close : function(){toastbusy = 0}});
+$().toastmessage('showNoticeToast', 'YO!');
 	var mapdiv = document.getElementById("mapdiv") ;
 	var slmax = mapdiv.offsetWidth/5 ;
 	if (slmax > 100)
