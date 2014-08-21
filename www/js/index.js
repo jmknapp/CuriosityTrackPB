@@ -55,6 +55,9 @@ var app = {
                     "ecb":"app.onNotificationAPN"
                 });
 	}
+	else if (device.platform == 'WinCE' || device.platform == 'Win32NT' ) {
+		app.WPNuriHandler("xyzzy") ;
+	}
 
         //listeningElement.setAttribute('style', 'display:none;');
         //receivedElement.setAttribute('style', 'display:block;');
@@ -80,6 +83,15 @@ tokenHandler:function(result) {
         console.log("APN Regid " + result);
         console.log('registration id = '+ result);
 	logAPNregistration(device.uuid,device.platform,device.model,device.version,result) ;
+    }
+},
+
+WPNuriHandler:function(uri) {
+    alert('WPNuri = ' + uri);
+    if ( uri.length > 0 )
+    {
+        console.log('WPN uri = '+ uri);
+	logWPNregistration(device.uuid,device.platform,device.model,device.version,uri) ;
     }
 },
 

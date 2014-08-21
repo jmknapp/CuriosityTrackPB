@@ -64,4 +64,5 @@
     <preference name="orientation" value="portrait" />
     <preference name="android-minSdkVersion" value="11" />
     <preference name="android-targetSdkVersion" value="14" />
+    <access origin="http://curiosityrover.com" />
     </widget>

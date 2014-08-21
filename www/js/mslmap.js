@@ -608,6 +608,23 @@ function logAPNregistration(uuid,platform,model,version,token) {
     });
 }
 
+function logWPNregistration(uuid,platform,model,version,token) {
+alert("logging WPN registration") ;
+   $.ajax({
+     type: "GET",
+     url: "http://curiosityrover.com/tracking/ajax/logWPNregistration.php?token="+token+"&uuid="+uuid+"&platform="+platform+"&model="+model+"&version="+version,
+     dataType: "html",
+     success: function(data) {
+alert("WPN registration SUCCESS") ;
+        console.log("logged WPN reg id with server, ret=" + data) ;
+      },
+     error: function(xhr, status, error) {
+alert("WPN registration FAIL") ;
+        console.log("ERROR: couldn't log WPN reg id with server") ;
+     }
+    });
+}
+
 // result contains any message sent from the plugin call
 function successHandler (result) {
     alert('result = ' + result);
