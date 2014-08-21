@@ -608,19 +608,19 @@ function logAPNregistration(uuid,platform,model,version,token) {
     });
 }
 
-function logWPNregistration(uuid,platform,model,version,token) {
+function logWPNregistration(uuid,platform,model,version,uri) {
 alert("logging WPN registration") ;
    $.ajax({
      type: "GET",
-     url: "http://curiosityrover.com/tracking/ajax/logWPNregistration.php?token="+token+"&uuid="+uuid+"&platform="+platform+"&model="+model+"&version="+version,
+     url: "http://curiosityrover.com/tracking/ajax/logWPNregistration.php?uri="+uri+"&uuid="+uuid+"&platform="+platform+"&model="+model+"&version="+version,
      dataType: "html",
      success: function(data) {
 alert("WPN registration SUCCESS") ;
-        console.log("logged WPN reg id with server, ret=" + data) ;
+        console.log("logged WPN uri with server, ret=" + data) ;
       },
      error: function(xhr, status, error) {
 alert("WPN registration FAIL") ;
-        console.log("ERROR: couldn't log WPN reg id with server") ;
+        console.log("ERROR: couldn't log WPN uri with server") ;
      }
     });
 }
