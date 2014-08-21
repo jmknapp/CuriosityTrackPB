@@ -19,7 +19,6 @@
 var app = {
     // Application Constructor
     initialize: function() {
-console.log("XYZZY: in app initialize") ;
         this.bindEvents();
     },
     // Bind Event Listeners

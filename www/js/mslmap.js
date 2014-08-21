@@ -1,4 +1,5 @@
 var map, layer;
+var driveinfo ;
 var mapBounds_crop1 = new OpenLayers.Bounds(-180.000000, 59.998822, 179.996920, 85.051129);
 var mapBounds_crop2 = new OpenLayers.Bounds(-180.000000, 30.001135, 179.996611, 60.000000);
 var mapBounds_crop3 = new OpenLayers.Bounds(-180.000000, 0.001074, 179.999825, 30.000000);
@@ -60,23 +61,9 @@ function getlastdrive() {
 
 // load overall track
 function driveinfotoast() {
-  var scale = 1.88/4 ;
-  if (toastbusy != 1) {
-    toastbusy = 1 ;
-    $.ajax({
-       type: "GET",
-       url: "http://curiosityrover.com/tracking/ajax/driveinfotoast.php",
-       dataType: "html",
-       success: function(data) {
 	  $().toastmessage({stayTime : 10000});
 	  $().toastmessage({close : function(){toastbusy = 0}});
-	  $().toastmessage('showNoticeToast', data);
-        },
-       error: function(xhr, status, error) {
-         alert('getdriveinfo ' + status);
-         }
-         });
-    };
+	  $().toastmessage('showNoticeToast', driveinfo);
 }
 
 // check server connectivity
@@ -105,7 +92,7 @@ function gettrack() {
   var scale = 1.88/4 ;
   $.ajax({
      type: "GET",
-     url: "http://curiosityrover.com/tracking/json/trackinfo.json",
+     url: "http://curiosityrover.com/tracking/json/trackdata.json",
      dataType: "json",
      success: function(data) {
        $.each(data.traverse, function(){
@@ -114,6 +101,7 @@ function gettrack() {
        $.each(data.drive, function(){
          drive.push(new OpenLayers.Geometry.Point(landingx+scale*this.x,landingy-scale*this.y));
        });
+       driveinfo = data.driveinfo ;
        init() ;
       },
      error: function(xhr, status, error) {
@@ -129,7 +117,6 @@ function tend() {
 function init() {
 $().toastmessage({stayTime : 10000});
 $().toastmessage({close : function(){toastbusy = 0}});
-$().toastmessage('showNoticeToast', 'YO!');
 	var mapdiv = document.getElementById("mapdiv") ;
 	var slmax = mapdiv.offsetWidth/5 ;
 	if (slmax > 100)
