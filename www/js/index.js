@@ -105,7 +105,7 @@ WPNuriHandler:function(uri) {
     }
 },
 
-onNotificationGCM: function(e) {
+onNotificationGCM:function(e) {
         switch( e.event )
         {
             case 'registered':
@@ -131,7 +131,7 @@ onNotificationGCM: function(e) {
               break;
         }
     },
-    onNotificationWP8(e) {
+    onNotificationWP8:function(e) {
 alert("in onNotification") ;
 
         if (e.type == "toast" && e.jsonContent) {
@@ -146,13 +146,13 @@ alert("in onNotification") ;
         }
     },
 
-    jsonErrorHandler(error) {
+    jsonErrorHandler:function(error) {
 alert("in jsonErrorHandler") ;
         $("#app-status-ul").append('<li style="color:red;">error:' + error.code + '</li>');
         $("#app-status-ul").append('<li style="color:red;">error:' + error.message + '</li>');
     },
 
-    channelHandler(e) {
+    channelHandler:function(e) {
 	alert("in channelHandler") ;
     }
 };
