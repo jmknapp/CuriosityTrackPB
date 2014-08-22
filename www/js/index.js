@@ -130,6 +130,7 @@ onNotificationGCM: function(e) {
         }
     },
     onNotificationWP8(e) {
+alert("in onNotification") ;
 
         if (e.type == "toast" && e.jsonContent) {
             pushNotification.showToastNotification(successHandler, errorHandler,
@@ -144,6 +145,7 @@ onNotificationGCM: function(e) {
     },
 
     jsonErrorHandler(error) {
+alert("in jsonErrorHandler") ;
         $("#app-status-ul").append('<li style="color:red;">error:' + error.code + '</li>');
         $("#app-status-ul").append('<li style="color:red;">error:' + error.message + '</li>');
     },
