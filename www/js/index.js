@@ -56,7 +56,15 @@ var app = {
                 });
 	}
 	else if (device.platform == 'WinCE' || device.platform == 'Win32NT' ) {
-		app.WPNuriHandler("xyzzy") ;
+		pushNotification.register(
+        		channelHandler,
+        		errorHandler,
+        		{
+            		"channelName": channelName,
+            		"ecb": "app.onNotificationWP8",
+            		"uccb": "app.channelHandler",
+            		"errcb": "app.jsonErrorHandler"
+        	});
 	}
 
         //listeningElement.setAttribute('style', 'display:none;');
@@ -120,5 +128,27 @@ onNotificationGCM: function(e) {
               console.log('An unknown GCM event has occurred');
               break;
         }
+    },
+    onNotificationWP8(e) {
+
+        if (e.type == "toast" && e.jsonContent) {
+            pushNotification.showToastNotification(successHandler, errorHandler,
+            {
+                "Title": e.jsonContent["wp:Text1"], "Subtitle": e.jsonContent["wp:Text2"], "NavigationUri": e.jsonContent["wp:Param"]
+            });
+        }
+
+        if (e.type == "raw" && e.jsonContent) {
+            alert(e.jsonContent.Body);
+        }
+    },
+
+    jsonErrorHandler(error) {
+        $("#app-status-ul").append('<li style="color:red;">error:' + error.code + '</li>');
+        $("#app-status-ul").append('<li style="color:red;">error:' + error.message + '</li>');
+    },
+
+    channelHandler(e) {
+	alert("in channelHandler") ;
     }
 };
