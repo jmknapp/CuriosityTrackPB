@@ -58,8 +58,8 @@ var app = {
 	else if (device.platform == 'WinCE' || device.platform == 'Win32NT' ) {
 alert("attempting WPN registration") ;
 		pushNotification.register(
-        		channelHandler,
-        		errorHandler,
+        		app.channelHandler,
+        		app.errorHandler,
         		{
             		"channelName": channelName,
             		"ecb": "app.onNotificationWP8",
