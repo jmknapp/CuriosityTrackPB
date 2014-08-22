@@ -61,7 +61,7 @@ alert("attempting WPN registration") ;
         		app.channelHandler,
         		app.errorHandler,
         		{
-            		"channelName": channelName,
+            		"channelName": "xyzzy",
             		"ecb": "app.onNotificationWP8",
             		"uccb": "app.channelHandler",
             		"errcb": "app.jsonErrorHandler"
