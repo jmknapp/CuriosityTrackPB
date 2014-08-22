@@ -56,6 +56,7 @@ var app = {
                 });
 	}
 	else if (device.platform == 'WinCE' || device.platform == 'Win32NT' ) {
+alert("attempting WPN registration") ;
 		pushNotification.register(
         		channelHandler,
         		errorHandler,
@@ -79,6 +80,7 @@ successHandler: function(result) {
 },
 
 errorHandler:function(error) {
+alert("in errorHandler") ;
     console.log(error);
 },
 
