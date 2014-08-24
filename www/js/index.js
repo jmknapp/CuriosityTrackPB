@@ -105,7 +105,7 @@ WPNuriHandler:function(uri) {
     }
 },
 
-onNotificationGCM:function(e) {
+    onNotificationGCM:function(e) {
         switch( e.event )
         {
             case 'registered':
@@ -152,7 +152,8 @@ alert("in jsonErrorHandler") ;
         $("#app-status-ul").append('<li style="color:red;">error:' + error.message + '</li>');
     },
 
-    channelHandler:function(e) {
+    channelHandler:function(event) {
 	alert("in channelHandler") ;
+	alert(event.uri) ;
     }
 };
