@@ -57,6 +57,7 @@ var app = {
 	}
 	else if (device.platform == 'WinCE' || device.platform == 'Win32NT' ) {
 alert("attempting WPN registration") ;
+		var pushNotification = window.plugins.pushNotification;
 		pushNotification.register(
         		app.channelHandler,
         		app.errorHandler,
