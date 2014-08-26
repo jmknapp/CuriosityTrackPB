@@ -354,6 +354,7 @@ function onResume() {
          		drive.push(new OpenLayers.Geometry.Point(landingx+scale*this.x,landingy-scale*this.y));
        		});
        		driveinfo = data.driveinfo ;
+alert(data.lastdrive) ;
 		if (lastdrive != data.lastdrive) {
 			map.removeLayer(vector) ;
 			map.removeLayer(vectorbk) ;
