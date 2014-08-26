@@ -1,6 +1,11 @@
 var map, layer;
-var vectordrive ;
+var vector, vectorbk, vectordrive ;
+var styleMap, styleMapBk, styleDrive ;
+var mslicon ;
+var endmarkers ;
+var mslmarker ;
 var driveinfo ;
+var lastdrive ;
 var mapBounds_crop1 = new OpenLayers.Bounds(-180.000000, 59.998822, 179.996920, 85.051129);
 var mapBounds_crop2 = new OpenLayers.Bounds(-180.000000, 30.001135, 179.996611, 60.000000);
 var mapBounds_crop3 = new OpenLayers.Bounds(-180.000000, 0.001074, 179.999825, 30.000000);
@@ -103,6 +108,7 @@ function gettrack() {
          drive.push(new OpenLayers.Geometry.Point(landingx+scale*this.x,landingy-scale*this.y));
        });
        driveinfo = data.driveinfo ;
+       lastdrive = data.lastdrive ;
        init() ;
       },
      error: function(xhr, status, error) {
@@ -234,17 +240,18 @@ eventListeners: {
   var mslsize = new OpenLayers.Size(32,32);
   var msloffset = new OpenLayers.Pixel(-(mslsize.w/2), -mslsize.h + 5);
   var icon1 = new OpenLayers.Icon('img/rayb24.png', size, offset);
-  var mslicon = new OpenLayers.Icon('img/mslicon.png', mslsize, msloffset);
+  mslicon = new OpenLayers.Icon('img/mslicon.png', mslsize, msloffset);
   var siteicon = new OpenLayers.Icon('img/siteicon.png', mslsize, msloffset);
 
   var markers = new OpenLayers.Layer.Markers( "Markers" );
+  endmarkers = new OpenLayers.Layer.Markers( "Markers" );
   var landingmarker = new OpenLayers.Marker(new OpenLayers.LonLat(landingx,landingy),icon1);
   landingmarker.events.register('mousedown', landingmarker, function(evt) { alert("Bradbury Landing"); OpenLayers.Event.stop(evt); });
   markers.addMarker(landingmarker);
   //var marker = new OpenLayers.Marker(new OpenLayers.LonLat(landingx-6488.975,landingy-7772.826160),mslicon);
-  var marker = new OpenLayers.Marker(new OpenLayers.LonLat(traverse[traverse.length-1].x,traverse[traverse.length-1].y),mslicon);
-  marker.events.register('mousedown', marker, function(evt) { alert("Curiosity"); OpenLayers.Event.stop(evt); });
-  markers.addMarker(marker);
+  mslmarker = new OpenLayers.Marker(new OpenLayers.LonLat(traverse[traverse.length-1].x,traverse[traverse.length-1].y),mslicon);
+  mslmarker.events.register('mousedown', mslmarker, function(evt) { alert("Curiosity"); OpenLayers.Event.stop(evt); });
+  endmarkers.addMarker(mslmarker);
 
   var site4marker = new OpenLayers.Marker(new OpenLayers.LonLat(landingx,landingy),siteicon);
   site4marker.events.register('mousedown', site4marker, function(evt) { alert("MSL Site 4"); OpenLayers.Event.stop(evt); });
@@ -256,20 +263,20 @@ eventListeners: {
   var start_point = new OpenLayers.Geometry.Point(landingx,landingy);
   var end_point = new OpenLayers.Geometry.Point(landingx+100,landingy+100);
 
-  var styleMap = new OpenLayers.StyleMap(OpenLayers.Util.applyDefaults(
+  styleMap = new OpenLayers.StyleMap(OpenLayers.Util.applyDefaults(
         {fill: true, fillColor: "black", fillOpacity: 1.0, strokeDashstyle: "solid", strokeOpacity: 0.6, strokeColor: "yellow", strokeWidth: 1},
         OpenLayers.Feature.Vector.style["default"]));
 
-  var styleMapBk = new OpenLayers.StyleMap(OpenLayers.Util.applyDefaults(
+  styleMapBk = new OpenLayers.StyleMap(OpenLayers.Util.applyDefaults(
         {fill: true, fillColor: "black", fillOpacity: 1.0, strokeDashstyle: "solid", strokeOpacity: 0.6, strokeColor: "black", strokeWidth: 5},
         OpenLayers.Feature.Vector.style["default"]));
 
-  var styleDrive = new OpenLayers.StyleMap(OpenLayers.Util.applyDefaults(
+  styleDrive = new OpenLayers.StyleMap(OpenLayers.Util.applyDefaults(
         {fill: true, fillColor: "blue", fillOpacity: 1.0, strokeDashstyle: "solid", strokeOpacity: 1.0, strokeColor: "blue", strokeWidth: 8},
         OpenLayers.Feature.Vector.style["default"]));
 
-  var vector = new OpenLayers.Layer.Vector("Track", {styleMap: styleMap});
-  var vectorbk = new OpenLayers.Layer.Vector("Track", {styleMap: styleMapBk});
+  vector = new OpenLayers.Layer.Vector("Track", {styleMap: styleMap});
+  vectorbk = new OpenLayers.Layer.Vector("Track", {styleMap: styleMapBk});
   vectordrive = new OpenLayers.Layer.Vector("Drive 219", {styleMap: styleDrive});
   vector.addFeatures([new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(traverse))]);
   vectorbk.addFeatures([new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(traverse))]);
@@ -314,7 +321,7 @@ eventListeners: {
   	map.setCenter(lonlat,18) ;
 
   map.addLayers([
-      crop1,crop2,crop3,crop4,crop5,crop6,ctx,tmsoverlayLR09149,tmsoverlayLR018854,tmsoverlayLR09650,tmsoverlay,vectorbk,vector,vectordrive,markers
+      crop1,crop2,crop3,crop4,crop5,crop6,ctx,tmsoverlayLR09149,tmsoverlayLR018854,tmsoverlayLR09650,tmsoverlay,vectorbk,vector,vectordrive,markers,endmarkers
   ]);
    // done with traverse and drive arrays
    traverse = null ;
@@ -328,8 +335,49 @@ eventListeners: {
 }
 
 function onResume() {
-	alert("in resume") ;
-	map.removeLayer(vectordrive) ;
+	var scale = 1.88/4 ;
+ 	$.ajax({
+     		type: "GET",
+     		url: "http://curiosityrover.com/tracking/json/trackdata.json",
+     		dataType: "json",
+     		success: function(data) {
+		traverse = new Array() ;
+		drive = new Array() ;
+       		$.each(data.traverse, function(){
+         		traverse.push(new OpenLayers.Geometry.Point(landingx+scale*this.x,landingy-scale*this.y));
+       		});
+       		$.each(data.drive, function(){
+         		drive.push(new OpenLayers.Geometry.Point(landingx+scale*this.x,landingy-scale*this.y));
+       		});
+       		driveinfo = data.driveinfo ;
+lastdrive = 0 ;
+		if (lastdrive != data.lastdrive) {
+			map.removeLayer(vector) ;
+			map.removeLayer(vectorbk) ;
+			map.removeLayer(vectordrive) ;
+			map.removeLayer(endmarkers) ;
+			vector = new OpenLayers.Layer.Vector("Track", {styleMap: styleMap});
+			vectorbk = new OpenLayers.Layer.Vector("Track", {styleMap: styleMapBk});
+			vectordrive = new OpenLayers.Layer.Vector("Drive 219", {styleMap: styleDrive});
+			vector.addFeatures([new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(traverse))]);
+			vectorbk.addFeatures([new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(traverse))]);
+			vectordrive.addFeatures([new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(drive))]);
+			mslmarker = new OpenLayers.Marker(new OpenLayers.LonLat(traverse[traverse.length-1].x,traverse[traverse.length-1].y),mslicon);
+  			mslmarker.events.register('mousedown', mslmarker, function(evt) { alert("Curiosity"); OpenLayers.Event.stop(evt); });
+  			endmarkers.addMarker(mslmarker);
+			map.addLayer(vector) ;
+			map.addLayer(vectorbk) ;
+			map.addLayer(vectordrive) ;
+			map.addLayer(endmarkers) ;
+
+			lastdrive = data.lastdrive ;
+		}
+      	},
+     	error: function(xhr, status, error) {
+       		alert('gettrack ' + status);
+     	}
+  });
+
 }
 
 function recenter() {
