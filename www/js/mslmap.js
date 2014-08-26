@@ -1,4 +1,5 @@
 var map, layer;
+var vectordrive ;
 var driveinfo ;
 var mapBounds_crop1 = new OpenLayers.Bounds(-180.000000, 59.998822, 179.996920, 85.051129);
 var mapBounds_crop2 = new OpenLayers.Bounds(-180.000000, 30.001135, 179.996611, 60.000000);
@@ -269,7 +270,7 @@ eventListeners: {
 
   var vector = new OpenLayers.Layer.Vector("Track", {styleMap: styleMap});
   var vectorbk = new OpenLayers.Layer.Vector("Track", {styleMap: styleMapBk});
-  var vectordrive = new OpenLayers.Layer.Vector("Drive 219", {styleMap: styleDrive});
+  vectordrive = new OpenLayers.Layer.Vector("Drive 219", {styleMap: styleDrive});
   vector.addFeatures([new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(traverse))]);
   vectorbk.addFeatures([new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(traverse))]);
   vectordrive.addFeatures([new OpenLayers.Feature.Vector(new OpenLayers.Geometry.LineString(drive))]);
