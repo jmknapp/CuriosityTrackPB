@@ -327,6 +327,8 @@ eventListeners: {
 }
 
 function onResume() {
+	alert("in resume") ;
+	map.removeLayer(vectordrive) ;
 }
 
 function recenter() {
