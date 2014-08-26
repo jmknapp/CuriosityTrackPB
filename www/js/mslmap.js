@@ -96,9 +96,11 @@ function testserver() {
 // load overall track
 function gettrack() {
   var scale = 1.88/4 ;
+  var randTag = Math.floor(Math.random()*1e6) ;
+  var trackUrl =  "http://curiosityrover.com/tracking/json/trackdata.json?tag=" + randTag ;
   $.ajax({
      type: "GET",
-     url: "http://curiosityrover.com/tracking/json/trackdata.json",
+     url: trackUrl,
      dataType: "json",
      success: function(data) {
        $.each(data.traverse, function(){
@@ -336,9 +338,11 @@ eventListeners: {
 
 function onResume() {
 	var scale = 1.88/4 ;
+	var randTag = Math.floor(Math.random()*1e6) ;
+	var trackUrl =  "http://curiosityrover.com/tracking/json/trackdata.json?tag=" + randTag ;
  	$.ajax({
      		type: "GET",
-     		url: "http://curiosityrover.com/tracking/json/trackdata.json",
+     		url: trackUrl,
      		dataType: "json",
      		success: function(data) {
 		traverse = new Array() ;
