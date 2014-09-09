@@ -66,6 +66,6 @@
     <preference name="android-targetSdkVersion" value="14" />
     <access origin="http://curiosityrover.com" />
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-        <string>140</string>
+        <string>145</string>
     </gap:config-file>
     </widget>
